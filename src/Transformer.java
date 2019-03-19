@@ -34,15 +34,15 @@ public class Transformer {
 		//endpreblock
 		
 		//repeated block
-		int xTemp;
-		int yTemp;
+		int x;
+		int y;
 		for(int i = 0;i<5;i++) {
 			for( int j = 0; j < 2; j++) {
-				xTemp = xOrigin + (xOffset * i);
-				yTemp = yOrigin + (yOffset * j);
+				x = xOrigin + (xOffset * i);
+				y = yOrigin + (yOffset * j);
 							
 				o.write( //concat series of method calls or final strings
-					mm(xTemp, yTemp)+
+					mm(x, y)+
 					click+ 
 					sleep(10)			
 				);	
