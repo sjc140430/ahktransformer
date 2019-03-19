@@ -29,7 +29,7 @@ public class Transformer {
 	private static void writeAll(FileWriter o) throws IOException {
 		
 		//preblock
-		o.write("#singleinstance force");
+		o.write("#singleinstance force\n");
 		o.write("coordmode, mouse, screen\n");
 		o.write("J::\n");
 		//endpreblock
@@ -41,12 +41,13 @@ public class Transformer {
 			for( int j = 0; j < 2; j++) {
 				xTemp = xOrigin + (xOffset * i);
 				yTemp = yOrigin + (yOffset * j);
-							
+				o.write("-------------------\n");	
 				o.write( //concat series of method calls or final strings
 					buildMouseMove(xTemp, yTemp)+
-					click+ 
+					//click+ 
 					buildSleep(10)			
-				);	
+				);
+				o.write("-------------------\n");	
 			}	
 		}
 		o.write(buildSleep(10));
@@ -54,8 +55,8 @@ public class Transformer {
 		
 		//post block
 		o.write("return\n");
-		
-		o.write("Escape::\n" + buildMouseMove(50, 50) + "ExitApp\nReturn\n");
+		o.write("-------------------\n");
+		o.write("1::\n" + buildMouseMove(50, 50) + "ExitApp\nReturn\n");
 		//end post block		
 	}
 
