@@ -29,6 +29,7 @@ public class Transformer {
 	private static void writeAll(FileWriter o) throws IOException {
 		
 		//preblock
+		o.write("#singleinstance force");
 		o.write("coordmode, mouse, screen\n");
 		o.write("J::\n");
 		//endpreblock
