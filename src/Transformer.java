@@ -21,43 +21,36 @@ public class Transformer {
 	public static void main(String[] args) throws IOException {
 		//preblock
 		FileWriter output = new FileWriter(new File("src\\script.ahk"));	
+		output.write("#singleinstance force\n");
+		output.write("coordmode, mouse, screen\n");		
 		writeAll(output);
+		output.write("1::\n" + buildMouseMove(50, 50) + "ExitApp\nReturn\n");
 		output.close();
 	}
 	
 
 	private static void writeAll(FileWriter o) throws IOException {
-		
-		//preblock
-		o.write("#singleinstance force\n");
-		o.write("coordmode, mouse, screen\n");
-		o.write("J::\n");
-		//endpreblock
-		
-		//repeated block
 		int xTemp;
 		int yTemp;
+		//----------------------------------------------------------//
+		o.write("J::\n");
 		for(int i = 0;i<5;i++) {
 			for( int j = 0; j < 2; j++) {
 				xTemp = xOrigin + (xOffset * i);
 				yTemp = yOrigin + (yOffset * j);
-				o.write("-------------------\n");	
+				o.write("#-------------------\n");	
 				o.write( //concat series of method calls or final strings
 					buildMouseMove(xTemp, yTemp)+
 					//click+ 
 					buildSleep(10)			
 				);
-				o.write("-------------------\n");	
+				o.write("#-------------------\n");	
 			}	
 		}
 		o.write(buildSleep(10));
-		//endrepeatedblock
-		
-		//post block
 		o.write("return\n");
-		o.write("-------------------\n");
-		o.write("1::\n" + buildMouseMove(50, 50) + "ExitApp\nReturn\n");
-		//end post block		
+		o.write("#-------------------\n");
+		//-----------------------------------------------------------//
 	}
 
 
