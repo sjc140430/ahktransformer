@@ -42,28 +42,28 @@ public class Transformer {
 				yTemp = yOrigin + (yOffset * j);
 							
 				o.write( //concat series of method calls or final strings
-					buildMouseMove(xTemp, yTemp)+
+					mm(xTemp, yTemp)+
 					click+ 
-					buildSleep(10)			
+					sleep(10)			
 				);	
 			}	
 		}
-		o.write(buildSleep(10));
+		o.write(sleep(10));
 		//endrepeatedblock
 		
 		//post block
 		o.write("return\n");
 		
-		o.write("Escape::\n" + buildMouseMove(50, 50) + "ExitApp\nReturn\n");
+		o.write("Escape::\n" + mm(50, 50) + "ExitApp\nReturn\n");
 		//end post block		
 	}
 
 
-	public static String buildMouseMove(int x, int y) {
+	public static String mm(int x, int y) {
 		return "MouseMove, " + x + ", " + y + "\n";
 	}
 	
-	public static String buildSleep(int ms) {
+	public static String sleep(int ms) {
 		return "sleep, " + ms + "\n";
 	}
 
